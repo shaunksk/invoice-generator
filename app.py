@@ -70,7 +70,8 @@ def generate_invoices(invoice_month_num,invoice_year,filename,sheet_name):#, tem
         pharm_sum = df_pharm['Daily Salary'].sum()
         sum_data = {'Date': ['Total'], 'Hours worked':[''], 'Shift_Pattern':[''], 'Hourly Rate':[''],'Daily Salary':[pharm_sum]}
         sum_df = pd.DataFrame(data=sum_data)
-        df_pharm = df_pharm.append(sum_df,ignore_index=True)
+#         df_pharm = df_pharm.append(sum_df,ignore_index=True)
+        df_pharm = pd.concat([df_pharm,sum_df],ignore_index=True)
         
         # clear table
         for row in range(len(doc.tables[2].rows)-1):  #rows
